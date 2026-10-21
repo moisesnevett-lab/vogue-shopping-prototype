@@ -1,0 +1,274 @@
+/* Local preview only: confirm web-embedding rights before committing or deploying local fonts. */
+@font-face {
+  font-family: "Vogue Avant Garde";
+  src: url("./fonts/Vogue%20Avant%20Garde%20generazione-2026-06-11/otf/VogueAvantGarde-Book.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vogue Avant Garde";
+  src: url("./fonts/Vogue%20Avant%20Garde%20generazione-2026-06-11/otf/VogueAvantGarde-Medium.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vogue Avant Garde";
+  src: url("./fonts/Vogue%20Avant%20Garde%20generazione-2026-06-11/otf/VogueAvantGarde-SemiBold.otf")
+    format("opentype");
+  font-style: normal;
+  /* The supplied face is SemiBold; it is the closest available face to Figma's DemiBold. */
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Didot provisional";
+  src: url("./fonts/didot-2/Didot.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Didot provisional";
+  src: url("./fonts/didot-2/Didot%20Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --font-interface: "Vogue Avant Garde", Arial, sans-serif;
+  --font-editorial: "Didot provisional", Georgia, serif;
+  --font-caption: "adobe-garamond-pro", Georgia, serif;
+  --font-interface-strong-weight: 600;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100svh;
+  margin: 0;
+  background: #f5f1eb;
+  color: #171614;
+  font-family: var(--font-interface);
+  font-weight: 400;
+}
+
+.page {
+  width: min(100%, 1000px);
+  margin: 0 auto;
+  padding: max(48px, 24px + env(safe-area-inset-top))
+    calc(20px + env(safe-area-inset-right))
+    max(64px, 24px + env(safe-area-inset-bottom))
+    calc(20px + env(safe-area-inset-left));
+}
+
+.eyebrow,
+.font-state,
+.byline,
+.story-label {
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #746d65;
+  font-weight: 500;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+}
+
+.licence-note {
+  max-width: 720px;
+  margin: 18px 0 0;
+  color: #625b53;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.font-status {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 8px;
+  margin: 24px 0 42px;
+}
+
+.font-state {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #d5cec5;
+  background: #fbf9f6;
+  color: #554e47;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+}
+
+.font-state[data-status="loaded"]::after {
+  color: #287147;
+  content: "LOADED";
+}
+
+.font-state[data-status="failed"]::after {
+  color: #a52121;
+  content: "FAILED";
+}
+
+.font-state[data-status="checking"]::after {
+  content: "CHECKING";
+}
+
+.font-state[data-status="error"]::after {
+  color: #a52121;
+  content: "ERROR";
+}
+
+.samples {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.sample {
+  min-height: 240px;
+  padding: 24px 22px;
+  background: #fffdfa;
+}
+
+.story-label {
+  margin: 0 0 38px;
+  color: #777068;
+}
+
+.story-mark {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 10px;
+  color: #191715;
+  font-family: var(--font-editorial);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.story-initial {
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-size: clamp(70px, 9vw, 108px);
+  line-height: 0.78;
+  letter-spacing: -0.08em;
+}
+
+.story-line {
+  font-size: clamp(19px, 2.5vw, 26px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+}
+
+.story-line:last-child {
+  font-size: clamp(12px, 1.6vw, 16px);
+  letter-spacing: 0.015em;
+}
+
+.supporting-type {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 36px;
+  align-items: end;
+  margin-top: 42px;
+  padding-top: 28px;
+  border-top: 1px solid #d5cec5;
+}
+
+.copy {
+  max-width: 590px;
+}
+
+.byline {
+  margin: 0 0 10px;
+  font-weight: 500;
+}
+
+.body-copy {
+  margin: 0;
+  color: #3d3934;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.full-edit {
+  min-height: 42px;
+  padding: 0 18px;
+  border: 1px solid #171614;
+  background: transparent;
+  color: #171614;
+  font: var(--font-interface-strong-weight) 10px/1 var(--font-interface);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.caption {
+  margin: 34px 0 0;
+  color: #514a43;
+  font-family: var(--font-caption);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+}
+
+@media (max-width: 700px) {
+  .page {
+    width: min(100%, 520px);
+    padding: max(30px, 16px + env(safe-area-inset-top))
+      calc(14px + env(safe-area-inset-right))
+      max(48px, 16px + env(safe-area-inset-bottom))
+      calc(14px + env(safe-area-inset-left));
+  }
+
+  .samples {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .sample {
+    min-height: 200px;
+  }
+
+  .story-initial {
+    font-size: 94px;
+  }
+
+  .story-line {
+    font-size: 26px;
+  }
+
+  .story-line:last-child {
+    font-size: 16px;
+  }
+
+  .supporting-type {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

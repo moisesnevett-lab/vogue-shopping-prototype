@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f5f1ef">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Vogue">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="apple-touch-icon" href="./public/icons/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://use.typekit.net/rdb2otl.css">
+    <link rel="stylesheet" href="./public/typography.css">
+    <link rel="stylesheet" href="./public/shopping.css">
+    <title>Vogue Shopping</title>
+  </head>
+  <body>
+    <div class="app-shell" id="shopping-app">
+      <main>
+        <section class="introduction" id="arrival" aria-label="Shopping introduction">
+          <header class="app-header">
+            <div class="status-row" aria-label="Status bar">
+              <span class="status-time">11:11</span>
+              <span class="status-icons" aria-hidden="true">
+                <span class="signal"><i></i><i></i><i></i><i></i></span>
+                <svg viewBox="0 0 18 13"><path d="M1 4.2a12 12 0 0 1 16 0M4 7.2a7.5 7.5 0 0 1 10 0M7.1 10.1a3 3 0 0 1 3.8 0M9 12h.01" /></svg>
+                <span class="battery"><i></i></span>
+              </span>
+            </div>
+            <img class="masthead" src="./ui%20elements/IMG_9636%201.png" alt="Vogue Shopping">
+          </header>
+
+          <section class="arrival" aria-label="Shopping arrival">
+            <div class="arrival-copy" data-editorial-message aria-live="polite" aria-atomic="true">
+              <p class="message-label">UNDER $300 · NEW EDIT</p>
+              <p class="message-body">Funnel-neck knits and brushed textures are the standout finds in this week's under-$300 edit.</p>
+              <button class="text-link" type="button" data-jump="under-300">
+                <span class="message-cta-label">Shop the edit</span><span class="message-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </section>
+
+          <nav class="categories" aria-label="Shopping categories">
+            <button type="button" class="category find-category" data-jump="ideas">
+              <img src="./public/shopping/find.svg" alt="">
+              <span>Find</span>
+            </button>
+            <button type="button" class="category" data-page-target="0">Dresses</button>
+            <button type="button" class="category" data-page-target="2">Jackets</button>
+            <button type="button" class="category" data-page-target="3">Tops</button>
+            <button type="button" class="category" data-page-target="3">Bottoms</button>
+            <button type="button" class="category" data-page-target="4">Shoes</button>
+          </nav>
+        </section>
+
+        <section class="editorial-section ideas-section" id="ideas" aria-label="Get their ideas">
+          <div class="progress-track" aria-label="Shopping sections">
+            <button type="button" class="progress active" aria-label="Get their ideas" data-jump="ideas"></button>
+            <button type="button" class="progress" aria-label="Under $300" data-jump="under-300"></button>
+            <button type="button" class="progress" aria-label="Cast your vote" data-jump="vote"></button>
+            <button type="button" class="progress" aria-label="Stories of the week" data-jump="stories"></button>
+            <span class="progress"></span>
+          </div>
+          <div class="split-title ideas-title" aria-label="Get their ideas">
+            <span class="initial">G</span><span class="line-one">ET</span><span class="line-two">IDEAS</span>
+          </div>
+          <div class="ideas-rule"></div>
+          <p class="ideas-summary">The latest finds, unexpected discoveries and pieces<br> worth knowing, straight from Vogue’s editors.</p>
+
+          <div class="editorial-carousel" aria-label="Swipe to explore the winter edit">
+            <div class="carousel-track">
+              <article class="editorial-intro">
+                <img class="editor-photo" src="./public/shopping/sarah-mower.png" alt="Sarah Mower">
+                <p class="editor-byline">BY SARAH MOWER</p>
+                <p class="editor-edition">THE WINTER EDIT</p>
+                <p class="intro-title">A different mood for winter</p>
+                <p class="intro-dek">“Softer tailoring, unexpected colour and layers that give familiar pieces a new point of view.”</p>
+                <p class="swipe-label">SWIPE TO EXPLORE</p>
+                <button class="black-button enter-edit" type="button" data-jump="under-300">ENTER FULL EDIT</button>
+              </article>
+
+              <div class="product-columns" aria-label="Winter edit products">
+                <div class="product-column">
+                  <button class="product-tile" type="button" aria-label="Black leather jacket">
+                    <img src="./laydowns/246%20%E2%80%94%20Image.png" alt="Black leather jacket">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">9</span>
+                  </button>
+                  <button class="product-tile" type="button" aria-label="Tan belted dress">
+                    <img src="./laydowns/068%20%E2%80%94%2016_9.png" alt="Tan belted dress">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">24</span>
+                  </button>
+                  <button class="product-tile" type="button" aria-label="Cream coat">
+                    <img src="./laydowns/190%20%E2%80%94%20Runway/190%20%E2%80%94%20Runway/source%20photo.png" alt="Cream coat">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">9</span>
+                  </button>
+                </div>
+                <div class="product-column">
+                  <button class="product-tile" type="button" aria-label="Gucci Jackie 1961 shoulder bag" data-open-pdp>
+                    <img src="./laydowns/183%20%E2%80%94%20Gucci%20Jackie%201961/183%20%E2%80%94%20Gucci%20Jackie%201961/black%20leather%20product%20laydown.png" alt="Gucci Jackie 1961 shoulder bag">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">31</span>
+                  </button>
+                  <button class="product-tile" type="button" aria-label="Blue wide-leg jeans">
+                    <img src="./laydowns/069%20%E2%80%94%2016_9.png" alt="Blue wide-leg jeans">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">18</span>
+                  </button>
+                  <button class="product-tile" type="button" aria-label="Pale blue jacket">
+                    <img src="./laydowns/191%20%E2%80%94%20Spotlight/191%20%E2%80%94%20Spotlight/source%20photo.png" alt="Pale blue jacket">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">31</span>
+                  </button>
+                </div>
+                <div class="product-column">
+                  <button class="product-tile" type="button" aria-label="Blue suede handbag">
+                    <img src="./laydowns/091%20%E2%80%94%2016_9.png" alt="Blue suede handbag">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">22</span>
+                  </button>
+                  <button class="product-tile" type="button" aria-label="Ivory cardigan">
+                    <img src="./laydowns/192%20%E2%80%94%20Quizzes/192%20%E2%80%94%20Quizzes/source%20photo.png" alt="Ivory cardigan">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">42</span>
+                  </button>
+                  <button class="product-tile" type="button" aria-label="Pearl pendant necklace">
+                    <img src="./laydowns/188%20%E2%80%94%20Quizzes/188%20%E2%80%94%20Quizzes/source%20photo.png" alt="Pearl pendant necklace">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">18</span>
+                  </button>
+                </div>
+                <div class="product-column">
+                  <button class="product-tile" type="button" aria-label="Black tailored trousers">
+                    <img src="./laydowns/242%20%E2%80%94%20Image.png" alt="Black tailored trousers">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">24</span>
+                  </button>
+                  <button class="product-tile" type="button" aria-label="Ivory blouse">
+                    <img src="./laydowns/224%20%E2%80%94%20Image.png" alt="Ivory blouse">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">42</span>
+                  </button>
+                  <button class="product-tile" type="button" aria-label="Leopard print coat">
+                    <img src="./laydowns/239%20%E2%80%94%20Image.png" alt="Leopard print coat">
+                    <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">42</span>
+                  </button>
+                </div>
+                <button class="product-more-card" type="button" data-page-target="0">
+                  <span class="split-title more-title" aria-hidden="true"><span class="initial">E</span><span class="line-one">XPLORE</span><span class="line-two">64 MORE</span></span>
+                  <span class="black-button">SEE ALL</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="editors" role="group" aria-label="Choose an editor">
+            <button class="editor-option" type="button" data-editor-index="0" aria-label="Show Sarah Mower’s edit" aria-pressed="true">
+              <img src="./public/shopping/sarah-mower.png" alt=""><span>Sarah</span>
+            </button>
+            <button class="editor-option" type="button" data-editor-index="1" aria-label="Show Chloe Malle’s edit" aria-pressed="false">
+              <img src="./public/shopping/chloe-malle.png" alt=""><span>Chloe</span>
+            </button>
+            <button class="editor-option" type="button" data-editor-index="2" aria-label="Show Nicole Phelps’s edit" aria-pressed="false">
+              <img src="./public/shopping/nicole-phelps.png" alt=""><span>Nicole</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="editorial-section under-section" id="under-300" aria-label="Under $300 editorial">
+          <nav class="progress-track under-progress" aria-label="Under $300 stories">
+            <button class="progress active" type="button" aria-label="Under $300 edit" aria-current="step" data-page-target="0"></button>
+            <button class="progress" type="button" aria-label="Vogue’s guides to style" data-page-target="1"></button>
+            <button class="progress" type="button" aria-label="Fall must haves" data-page-target="2"></button>
+            <button class="progress" type="button" aria-label="Wardrobe essentials" data-page-target="3"></button>
+            <button class="progress" type="button" aria-label="Trending now" data-page-target="4"></button>
+          </nav>
+
+          <div class="under-pages" aria-label="Swipe through the fall shopping edit">
+            <article class="under-page under-edit-page" aria-label="Under $300">
+              <div class="split-title under-title" aria-label="Under 300 dollars">
+                <span class="initial">U</span><span class="line-one">NDER</span><span class="line-two">$300</span>
+              </div>
+              <p class="under-intro">A considered edit of fashion finds under $300,<br> selected by Vogue Shopping.</p>
+              <div class="under-product-grid" aria-label="Under $300 product edit">
+                <button class="product-tile" type="button" aria-label="Tan belted dress">
+                  <img src="./laydowns/068%20%E2%80%94%2016_9.png" alt="Tan belted dress"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">24</span>
+                </button>
+                <button class="product-tile" type="button" aria-label="Cream coat">
+                  <img src="./laydowns/190%20%E2%80%94%20Runway/190%20%E2%80%94%20Runway/source%20photo.png" alt="Cream coat"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">9</span>
+                </button>
+                <button class="product-tile" type="button" aria-label="Black tailored trousers">
+                  <img src="./laydowns/345%20%E2%80%94%20Product%20Image.png" alt="Black tailored trousers"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">24</span>
+                </button>
+                <button class="product-tile" type="button" aria-label="Blue wide-leg jeans">
+                  <img src="./laydowns/069%20%E2%80%94%2016_9.png" alt="Blue wide-leg jeans"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">18</span>
+                </button>
+                <button class="product-tile" type="button" aria-label="Light blue jacket">
+                  <img src="./laydowns/191%20%E2%80%94%20Spotlight/191%20%E2%80%94%20Spotlight/source%20photo.png" alt="Light blue jacket"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">31</span>
+                </button>
+                <button class="product-tile" type="button" aria-label="Pearl pendant necklace">
+                  <img src="./laydowns/188%20%E2%80%94%20Quizzes/188%20%E2%80%94%20Quizzes/source%20photo.png" alt="Pearl pendant necklace"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">18</span>
+                </button>
+                <button class="product-tile" type="button" aria-label="Ivory cardigan">
+                  <img src="./laydowns/192%20%E2%80%94%20Quizzes/192%20%E2%80%94%20Quizzes/source%20photo.png" alt="Ivory cardigan"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">42</span>
+                </button>
+                <button class="product-tile" type="button" aria-label="Ivory blouse">
+                  <img src="./laydowns/224%20%E2%80%94%20Image.png" alt="Ivory blouse"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">16</span>
+                </button>
+                <button class="product-tile" type="button" aria-label="Leopard print coat">
+                  <img src="./laydowns/239%20%E2%80%94%20Image.png" alt="Leopard print coat"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">42</span>
+                </button>
+              </div>
+              <div class="under-editor-note">
+                <img src="./public/shopping/chloe-malle.png" alt="">
+                <div><p class="note-label">EDITOR’S NOTE</p><p>“This week, it’s funnel-neck knits and brushed textures. They bring richness to autumn layers without the designer price tag.”</p></div>
+              </div>
+              <button class="black-button under-page-cta" type="button" data-page-target="2">DISCOVER THE STANDOUTS</button>
+            </article>
+
+            <article class="under-page guide-page" aria-label="Vogue’s guides to style">
+              <div class="split-title guide-title"><span class="initial">V</span><span class="line-one">OGUE’S</span><span class="line-two">GUIDES TO STYLE</span></div>
+              <div class="guide-rule"></div>
+              <p class="guide-intro">Practical ways to wear the pieces you love,<br> through the eyes of Vogue editors.</p>
+              <div class="guide-list">
+                <article class="guide-card">
+                  <div class="guide-images">
+                    <img src="./laydowns/069%20%E2%80%94%2016_9.png" alt="Wide-leg blue denim">
+                    <img src="./laydowns/191%20%E2%80%94%20Spotlight/191%20%E2%80%94%20Spotlight/source%20photo.png" alt="Pale blue jacket">
+                    <img src="./landscape%20images/130%20%E2%80%94%20PARIS-STREETSTYLE-PHILOH-DAY8-%252017%203.png" alt="Street-style denim look">
+                  </div>
+                  <h2>Wide-leg denim, three ways</h2>
+                  <p>A change of jacket.<br>A different shoe.</p>
+                  <button class="black-button" type="button" data-open-denim-guide>START GUIDANCE</button>
+                </article>
+                <article class="guide-card">
+                  <div class="guide-images">
+                    <img src="./laydowns/095%20%E2%80%94%2016_9.png" alt="Structured leather handbag">
+                    <img src="./laydowns/190%20%E2%80%94%20Runway/190%20%E2%80%94%20Runway/source%20photo.png" alt="Cream tailored coat">
+                    <img src="./landscape%20images/040%20%E2%80%94%202_3.png" alt="A tailored look on the street">
+                  </div>
+                  <h2>A guide to proportion</h2>
+                  <p>The balance between<br>structure and ease.</p>
+                  <button class="black-button" type="button" data-page-target="2">READ &amp; SHOP</button>
+                </article>
+                <article class="guide-card">
+                  <div class="guide-images">
+                    <img src="./landscape%20images/044%20%E2%80%94%203_4.png" alt="Considered knitwear look">
+                    <img src="./landscape%20images/041%20%E2%80%94%202_3.png" alt="A layered knitwear look">
+                    <img src="./landscape%20images/042%20%E2%80%94%202_3.png" alt="A textured autumn look">
+                  </div>
+                  <h2>Knitwear, considered</h2>
+                  <p>A closer look at how the<br>pieces work together.</p>
+                  <button class="black-button" type="button" data-page-target="2">READ &amp; SHOP</button>
+                </article>
+              </div>
+            </article>
+
+            <article class="under-page product-story-page fall-must-haves" aria-label="Fall must haves">
+              <div class="split-title story-title"><span class="initial">F</span><span class="line-one">ALL</span><span class="line-two">MUST HAVES</span></div>
+              <p class="story-page-intro">The silhouettes, textures and standout pieces worth<br> knowing this fall, selected by Vogue editors.</p>
+              <div class="story-product-grid" aria-label="Fall must haves products">
+                <button class="product-tile" type="button" aria-label="Camel tailored blazer"><img src="./laydowns/274%20%E2%80%94%20Product%20Image.png" alt="Camel tailored blazer"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">24</span></button>
+                <button class="product-tile" type="button" aria-label="Layered knitwear"><img src="./laydowns/261%20%E2%80%94%20image.png" alt="Layered knitwear"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">9</span></button>
+                <button class="product-tile" type="button" aria-label="Grey tailored trousers"><img src="./laydowns/345%20%E2%80%94%20Product%20Image.png" alt="Grey tailored trousers"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">24</span></button>
+                <button class="product-tile" type="button" aria-label="Argyle sweater"><img src="./laydowns/268%20%E2%80%94%20Product%20Image.png" alt="Argyle sweater"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">18</span></button>
+                <button class="product-tile" type="button" aria-label="Brown leather jacket"><img src="./laydowns/278%20%E2%80%94%20Product%20Image.png" alt="Brown leather jacket"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">31</span></button>
+                <button class="product-tile" type="button" aria-label="Grey checked blazer"><img src="./laydowns/290%20%E2%80%94%20Product%20Image.png" alt="Grey checked blazer"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">18</span></button>
+                <button class="product-tile" type="button" aria-label="Grey plaid blazer"><img src="./laydowns/270%20%E2%80%94%20Product%20Image.png" alt="Grey plaid blazer"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">42</span></button>
+                <button class="product-tile" type="button" aria-label="Burgundy flat shoes"><img src="./laydowns/233%20%E2%80%94%20Image.png" alt="Burgundy flat shoes"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">16</span></button>
+                <button class="product-tile" type="button" aria-label="Camel skirt"><img src="./laydowns/244%20%E2%80%94%20Image.png" alt="Camel skirt"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">42</span></button>
+              </div>
+              <div class="under-editor-note">
+                <img src="./public/shopping/sarah-mower.png" alt="">
+                <div><p class="note-label">EDITOR’S NOTE</p><p>“It’s the pieces that change a wardrobe’s mood. A beautifully cut coat, a tactile knit, tailoring with just enough ease.”</p></div>
+              </div>
+              <button class="black-button under-page-cta" type="button" data-page-target="3">THE PIECES TO KNOW</button>
+            </article>
+
+            <article class="under-page product-story-page wardrobe-essentials" aria-label="Wardrobe essentials">
+              <div class="split-title story-title"><span class="initial">W</span><span class="line-one">ARDROBE</span><span class="line-two">ESSENTIALS</span></div>
+              <p class="story-page-intro">The pieces that make everything else work. Beautifully<br> cut, endlessly versatile, and selected by Vogue.</p>
+              <div class="story-product-grid" aria-label="Wardrobe essentials products">
+                <button class="product-tile" type="button" aria-label="Classic black sunglasses"><img src="./laydowns/299%20%E2%80%94%20image%2065.png" alt="Classic black sunglasses"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">24</span></button>
+                <button class="product-tile" type="button" aria-label="Sculptural gold earrings"><img src="./laydowns/248%20%E2%80%94%20Image.png" alt="Sculptural gold earrings"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">9</span></button>
+                <button class="product-tile" type="button" aria-label="Leopard print coat"><img src="./laydowns/239%20%E2%80%94%20Image.png" alt="Leopard print coat"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">24</span></button>
+                <button class="product-tile" type="button" aria-label="Everyday shampoo"><img src="./laydowns/243%20%E2%80%94%20Image.png" alt="Everyday shampoo"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">18</span></button>
+                <button class="product-tile" type="button" aria-label="Blue wide-leg jeans"><img src="./laydowns/069%20%E2%80%94%2016_9.png" alt="Blue wide-leg jeans"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">31</span></button>
+                <button class="product-tile" type="button" aria-label="Printed white T-shirt"><img src="./laydowns/342%20%E2%80%94%20Product%20Image.png" alt="Printed white T-shirt"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">18</span></button>
+                <button class="product-tile" type="button" aria-label="Black dress"><img src="./laydowns/242%20%E2%80%94%20Image.png" alt="Black dress"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">42</span></button>
+                <button class="product-tile" type="button" aria-label="Black leather loafers"><img src="./laydowns/234%20%E2%80%94%20Image.png" alt="Black leather loafers"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">16</span></button>
+                <button class="product-tile" type="button" aria-label="Brown leather belt"><img src="./laydowns/364%20%E2%80%94%20Product%20Image.png" alt="Brown leather belt"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">42</span></button>
+              </div>
+              <div class="under-editor-note">
+                <img src="./public/shopping/nicole-phelps.png" alt="">
+                <div><p class="note-label">EDITOR’S NOTE</p><p>“A great wardrobe is built on pieces worth returning to. Beautiful cuts, timeless shapes and effortless versatility.”</p></div>
+              </div>
+              <button class="black-button under-page-cta" type="button" data-page-target="4">DISCOVER THE KEEPERS</button>
+            </article>
+
+            <article class="under-page product-story-page trending-now" aria-label="Trending now">
+              <div class="split-title story-title"><span class="initial">T</span><span class="line-one">RENDING</span><span class="line-two">NOW</span></div>
+              <p class="story-page-intro">The standout pieces defining fashion right now,<br> selected by Vogue editors.</p>
+              <div class="story-product-grid" aria-label="Trending now products">
+                <button class="product-tile" type="button" aria-label="Floral statement dress"><img src="./laydowns/223%20%E2%80%94%20Image.png" alt="Floral statement dress"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">24</span></button>
+                <button class="product-tile" type="button" aria-label="Red woven handbag"><img src="./laydowns/360%20%E2%80%94%20Product%20Image.png" alt="Red woven handbag"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">9</span></button>
+                <button class="product-tile" type="button" aria-label="Black leather belt"><img src="./laydowns/249%20%E2%80%94%20Image.png" alt="Black leather belt"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">24</span></button>
+                <button class="product-tile" type="button" aria-label="Pearl pendant necklace"><img src="./laydowns/188%20%E2%80%94%20Quizzes/188%20%E2%80%94%20Quizzes/source%20photo.png" alt="Pearl pendant necklace"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">18</span></button>
+                <button class="product-tile" type="button" aria-label="Gucci Jackie 1961 shoulder bag" data-open-pdp><img src="./laydowns/183%20%E2%80%94%20Gucci%20Jackie%201961/183%20%E2%80%94%20Gucci%20Jackie%201961/black%20leather%20product%20laydown.png" alt="Gucci Jackie 1961 shoulder bag"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">31</span></button>
+                <button class="product-tile" type="button" aria-label="Red shoulder bag"><img src="./laydowns/361%20%E2%80%94%20Product%20Image.png" alt="Red shoulder bag"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">18</span></button>
+                <button class="product-tile" type="button" aria-label="Silver sculptural ring"><img src="./laydowns/365%20%E2%80%94%20Product%20Image.png" alt="Silver sculptural ring"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">42</span></button>
+                <button class="product-tile" type="button" aria-label="Black ankle boots"><img src="./laydowns/368%20%E2%80%94%20Product%20Image.png" alt="Black ankle boots"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">16</span></button>
+                <button class="product-tile" type="button" aria-label="Beige shoulder bag"><img src="./laydowns/071%20%E2%80%94%2016_9.png" alt="Beige shoulder bag"><span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">42</span></button>
+              </div>
+              <div class="under-editor-note community-note">
+                <img src="./public/shopping/chloe-malle.png" alt="">
+                <div><p class="note-label">THE COMMUNITY’S TAKE</p><p>“Funnel-neck knits, brushed textures and rich chocolate tones, how did I not think of that before?”</p></div>
+              </div>
+              <button class="black-button under-page-cta" type="button" data-jump="vote">DISCOVER THE MOVERS</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="editorial-section vote-section" id="vote" aria-label="Cast your vote">
+          <div class="progress-track vote-progress" aria-label="Cast your vote slides">
+            <button type="button" class="progress active" aria-label="Cast your vote" aria-current="step" data-vote-slide="0"></button>
+            <button type="button" class="progress" aria-label="Daily Covet" data-vote-slide="1"></button>
+          </div>
+          <div class="split-title vote-title" aria-label="Cast your vote">
+            <span class="initial">C</span><span class="line-one">AST</span><span class="line-two">YOUR VOTE</span>
+          </div>
+          <div class="vote-rule"></div>
+          <div class="vote-story">
+            <img class="vote-image" src="./public/shopping/street-style-vote.png" alt="Street style look">
+            <div class="vote-shade"></div>
+            <p class="vote-question">DOES WHAT YOU WEAR TO WORK MATTER?</p>
+            <div class="vote-divider"></div>
+            <div class="vote-options" role="group" aria-label="Cast your vote">
+              <button type="button" data-vote="yes" aria-pressed="false">YES</button>
+              <button type="button" data-vote="no" aria-pressed="false">NO</button>
+            </div>
+            <div class="vote-results" data-vote-results hidden aria-live="polite" aria-label="Illustrative prototype results">
+              <p>THE COMMUNITY’S VIEW</p>
+              <div class="vote-result-choices">
+                <div><strong>64%</strong><span>YES</span></div>
+                <div><strong>36%</strong><span>NO</span></div>
+              </div>
+              <small>Illustrative prototype results, not live votes.</small>
+            </div>
+          </div>
+          <div class="discover-strip">
+            <p>ITEMS IN THIS LOOK</p>
+            <img src="./laydowns/246%20%E2%80%94%20Image.png" alt="">
+            <img src="./laydowns/342%20%E2%80%94%20Product%20Image.png" alt="">
+            <img src="./laydowns/364%20%E2%80%94%20Product%20Image.png" alt="">
+            <img src="./laydowns/183%20%E2%80%94%20Gucci%20Jackie%201961/183%20%E2%80%94%20Gucci%20Jackie%201961/black%20leather%20product%20laydown.png" alt="">
+          </div>
+          <div class="daily-covet-view" hidden aria-label="Daily Covet smart searches">
+            <div class="daily-covet-content">
+              <div class="split-title daily-covet-title"><span class="initial">D</span><span class="line-one">AILY</span><span class="line-two">COVET</span></div>
+              <p class="daily-covet-kicker">MOST WANTED LOOK <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20 10 13l4 4L22 8"></path><path d="M15 8h7v7"></path></svg></p>
+              <div class="daily-covet-image" aria-label="Most wanted look, styled by Vogue">
+                <img class="covet-jacket" src="./laydowns/298%20%E2%80%94%20image%2067.png" alt="Brown leather jacket">
+                <img class="covet-skirt" src="./laydowns/296%20%E2%80%94%20image%2064.png" alt="Camel pleated skirt">
+                <img class="covet-boots" src="./laydowns/300%20%E2%80%94%20image%2065.png" alt="Black knee-high boots">
+                <img class="covet-bag" src="./laydowns/302%20%E2%80%94%20image%2066.png" alt="Black shoulder bag">
+              </div>
+              <button class="black-button daily-covet-cta" type="button" data-page-target="3">MAKE IT YOURS</button>
+              <div class="daily-covet-divider"></div>
+              <div class="split-title smart-search-title"><span class="initial">S</span><span class="line-one">MART</span><span class="line-two">SEARCHES</span></div>
+              <div class="smart-searches">
+                <article class="smart-search-card weather-search" data-no-slide-nav>
+                  <span>WHAT SHOULD<br>I WEAR TODAY?</span>
+                  <svg class="search-icon weather-icon" viewBox="0 0 32 32" aria-hidden="true">
+                    <path d="M8 20.5a6 6 0 0 1 .8-12 8 8 0 0 1 15.1 2.4 5 5 0 0 1 .1 9.6H8Z"></path>
+                    <path d="m12 24-1 2m7-2-1 2m7-2-1 2"></path>
+                  </svg>
+                </article>
+                <article class="smart-search-card" data-no-slide-nav>
+                  <img src="./public/shopping/story-season.png" alt="">
+                  <span>WHAT TO WEAR<br>FOR WORK</span>
+                  <svg class="search-icon" viewBox="0 0 32 32" aria-hidden="true">
+                    <circle cx="13" cy="13" r="8"></circle>
+                    <path d="m19 19 8 8"></path>
+                  </svg>
+                </article>
+                <article class="smart-search-card" data-no-slide-nav>
+                  <img src="./landscape%20images/042%20%E2%80%94%202_3.png" alt="">
+                  <span>WHAT TO WEAR<br>TO A WEDDING</span>
+                  <svg class="search-icon" viewBox="0 0 32 32" aria-hidden="true">
+                    <circle cx="13" cy="13" r="8"></circle>
+                    <path d="m19 19 8 8"></path>
+                  </svg>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="editorial-section stories-section" id="stories" aria-label="Stories of the week">
+          <div class="progress-track story-progress" aria-label="Stories of the week slides">
+            <button type="button" class="progress active" aria-label="Story 1: Vintage Finds" aria-current="step" data-story-slide="0"></button>
+            <button type="button" class="progress" aria-label="Story 2: New Classics" data-story-slide="1"></button>
+            <button type="button" class="progress" aria-label="Story 3: On Social" data-story-slide="2"></button>
+            <button type="button" class="progress" aria-label="Story 4: On Social" data-story-slide="3"></button>
+            <button type="button" class="progress" aria-label="Story 5: On Social" data-story-slide="4"></button>
+          </div>
+          <div class="split-title stories-title" aria-label="Stories of the week">
+            <span class="initial">S</span><span class="line-one">TORIES</span><span class="line-two">OF THE WEEK</span>
+          </div>
+          <div class="stories-rule"></div>
+          <p class="stories-intro">An evolving collection of shopping stories, editor<br>discoveries and pieces worth saving.</p>
+          <div class="story-rail" aria-label="Featured stories">
+            <article class="story-card">
+              <img src="./public/shopping/story-tailoring.png" alt="A tailored look from the latest Vogue editorial">
+              <div class="story-shade"></div>
+              <p class="story-kicker">01&nbsp; · &nbsp;VINTAGE FINDS</p>
+              <h2>Buyer’s Rejoice</h2>
+              <p class="story-dek">A little structure. An entirely different attitude.</p>
+              <button type="button" class="story-more" data-story-target="1">READ STORY</button>
+            </article>
+            <article class="story-card">
+              <img src="./public/shopping/story-season.png" alt="Model in a camel tailored look on the runway">
+              <div class="story-shade"></div>
+              <p class="story-kicker">02&nbsp; · &nbsp;NEW CLASSICS</p>
+              <h2>The shape of<br>a new season</h2>
+              <p class="story-dek">A considered silhouette. A different point of view.</p>
+              <button type="button" class="story-more" data-story-target="2">READ STORY</button>
+            </article>
+            <article class="story-card story-social story-social-frizz story-card-art">
+              <img src="./portrait%20images/IMG_9984%202.png" alt="Blonde woman in a red jacket">
+              <p class="story-kicker">03&nbsp; · &nbsp;ON SOCIAL</p>
+              <h2 class="story-art-heading">We Found the Products<br>That Deliver the Best Frizz<br>Control for Fine Hair</h2>
+              <button type="button" class="story-shop-pill" aria-label="Tap to shop this story" data-story-target="3">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 14.5 5-5"></path><path d="M7.2 16.8 5.8 18.2a4 4 0 0 1-5.6-5.6l4.1-4.1a4 4 0 0 1 5.6 0"></path><path d="m16.8 7.2 1.4-1.4a4 4 0 0 1 5.6 5.6l-4.1 4.1a4 4 0 0 1-5.6 0"></path></svg>
+                <span>TAP TO SHOP</span>
+              </button>
+              <button type="button" class="story-more" data-story-target="3">FOLLOW LINK</button>
+            </article>
+            <article class="story-card story-social story-social-stealth story-card-art">
+              <img src="./portrait%20images/IMG_9984%203.png" alt="Jennifer Lawrence in sunglasses and a navy sweater">
+              <p class="story-kicker">05&nbsp; · &nbsp;ON SOCIAL</p>
+              <h2 class="story-art-heading">Jennifer Lawrence<br>Delivers the Death Blow<br>to Stealth Wealth</h2>
+              <button type="button" class="story-shop-pill" aria-label="Tap for more on this story" data-story-target="4">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 14.5 5-5"></path><path d="M7.2 16.8 5.8 18.2a4 4 0 0 1-5.6-5.6l4.1-4.1a4 4 0 0 1 5.6 0"></path><path d="m16.8 7.2 1.4-1.4a4 4 0 0 1 5.6 5.6l-4.1 4.1a4 4 0 0 1-5.6 0"></path></svg>
+                <span>TAP FOR MORE</span>
+              </button>
+              <button type="button" class="story-more" data-story-target="4">FOLLOW LINK</button>
+            </article>
+            <article class="story-card story-social story-social-collab story-card-art">
+              <img src="./portrait%20images/IMG_9984%201.png" alt="Billie Eilish and Finneas photographed together">
+              <p class="story-kicker">06&nbsp; · &nbsp;ON SOCIAL</p>
+              <h2 class="story-art-heading">Billie Eilish and Finneas’s<br>Latest Collaboration?<br>Designing Jewelry</h2>
+              <button type="button" class="story-more" aria-label="Follow link to the featured story" data-story-target="0">FOLLOW LINK</button>
+            </article>
+          </div>
+        </section>
+        <section class="continue-exploring" id="continue-exploring" aria-labelledby="continue-title">
+          <h2 id="continue-title">Continue Exploring</h2>
+          <div class="continue-carousel" aria-label="Explore Vogue Shopping categories">
+            <a class="explore-card" href="#under-300" data-explore-category="dresses">
+              <img src="./landscape%20images/040%20%E2%80%94%202_3.png" alt="">
+              <span>DRESSES</span>
+            </a>
+            <a class="explore-card" href="#under-300" data-explore-category="jackets">
+              <img src="./public/shopping/story-tailoring.png" alt="">
+              <span>JACKETS</span>
+            </a>
+            <a class="explore-card" href="#under-300" data-explore-category="tops">
+              <img src="./landscape%20images/130%20%E2%80%94%20PARIS-STREETSTYLE-PHILOH-DAY8-%252017%203.png" alt="">
+              <span>TOPS</span>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottom-dock" aria-label="Main navigation">
+        <img src="./ui%20elements/BottomNavShopping.png" alt="">
+        <button type="button" aria-label="Home" data-jump="arrival"></button>
+        <button type="button" aria-label="Collection" data-jump="ideas"></button>
+        <button type="button" aria-label="Shopping" data-jump="arrival"></button>
+        <button type="button" aria-label="Discover" data-jump="stories"></button>
+      </nav>
+    </div>
+
+    <section class="style-guide-overlay" id="denim-guide-overlay" role="dialog" aria-modal="true" aria-label="Wide-leg denim style guide" hidden>
+      <header class="overlay-header">
+        <button class="overlay-back" type="button" data-close-guide aria-label="Back to Shopping">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" /></svg>
+        </button>
+      </header>
+      <div class="style-guide-scroll">
+        <div class="style-guide-content">
+          <section class="denim-hero" aria-label="Wide-leg denim starting piece">
+            <div class="denim-hero-title" aria-label="Wide-leg denim">
+              <span class="initial">W</span><span class="line-one">IDE-LEG</span><span class="line-two">DENIM</span>
+            </div>
+            <div class="denim-hero-photo">
+              <img src="./landscape%20images/130%20%E2%80%94%20PARIS-STREETSTYLE-PHILOH-DAY8-%252017%203.png" alt="Street-style look with wide-leg denim">
+              <div class="denim-hero-copy">
+                <p class="denim-step">01 / 06&nbsp; THE STARTING PIECE</p>
+                <p>A neat upper layer lets the wider leg denim define the silhouette. Keep the hem and shoe in conversation.</p>
+                <p>Next choose a length before we play with proportions.</p>
+                <div class="denim-options" role="group" aria-label="Choose a denim styling direction">
+                  <button type="button" data-denim-option="long" aria-pressed="false"><b>GO LONG</b><span>KEEP IT FLUID</span></button>
+                  <button type="button" data-denim-option="short" aria-pressed="false"><b>GO SHORT</b><span>DEFINE THE WAIST</span></button>
+                </div>
+              </div>
+            </div>
+            <div class="denim-pagination" aria-label="Guide step 1 of 6">
+              <span class="active"></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </section>
+          <section class="guide-matches" aria-labelledby="denim-matches-title">
+            <div class="matches-heading">
+              <h2 id="denim-matches-title">BEST MATCHES SO FAR</h2>
+              <span>28/68</span>
+            </div>
+            <div class="denim-product-grid">
+              <article class="denim-product">
+                <img src="./laydowns/069%20%E2%80%94%2016_9.png" alt="Blue wide-leg denim">
+                <b>KHAITE</b><span>Minnie trench</span><strong>$3400</strong><small>Khaite ↗</small>
+              </article>
+              <button class="denim-product" type="button" data-open-pdp aria-label="View Gucci Jackie shoulder bag">
+                <img src="./laydowns/183%20%E2%80%94%20Gucci%20Jackie%201961/183%20%E2%80%94%20Gucci%20Jackie%201961/black%20leather%20product%20laydown.png" alt="Gucci Jackie small shoulder bag">
+                <b>GUCCI</b><span>Jackie small shoulder bag</span><strong><del>$3400</del> $3200</strong><small>Farfetch ↗</small>
+              </button>
+              <article class="denim-product">
+                <img src="./laydowns/095%20%E2%80%94%2016_9.png" alt="Structured fabric mini bag">
+                <b>PRADA</b><span>Symbol embroidered fabric mini bag</span><strong>$3400</strong><small>Mytheresa ↗</small>
+              </article>
+              <article class="denim-product">
+                <img src="./laydowns/091%20%E2%80%94%2016_9.png" alt="Quilted leather crossbody bag">
+                <b>SAINT LAURENT</b><span>Lou quilted leather crossbody bag</span><strong>$3400</strong><small>Saint Laurent ↗</small>
+              </article>
+            </div>
+            <article class="denim-editorial">
+              <img src="./landscape%20images/130%20%E2%80%94%20PARIS-STREETSTYLE-PHILOH-DAY8-%252017%203.png" alt="Wide-leg denim street-style look">
+              <div><h2>Denim for Spring</h2><p>You heard it here first: wide-leg denim is the new uniform. Start with a fluid shape, then bring the proportions together with a neat upper layer.</p></div>
+            </article>
+            <div class="denim-product-grid additional-denim-products">
+              <article class="denim-product"><img src="./laydowns/241%20%E2%80%94%20Image.png" alt="Light tailored jacket"><b>PRADA</b><span>Soft-shoulder jacket</span><strong>$3400</strong><small>Mytheresa ↗</small></article>
+              <article class="denim-product"><img src="./laydowns/069%20%E2%80%94%2016_9.png" alt="Blue wide-leg jeans"><b>SAINT LAURENT</b><span>Lou quilted leather crossbody bag</span><strong>$3400</strong><small>Saint Laurent ↗</small></article>
+              <article class="denim-product"><img src="./laydowns/290%20%E2%80%94%20Product%20Image.png" alt="Grey checked jacket"><b>KHAITE</b><span>Minnie trench</span><strong>$3400</strong><small>Khaite ↗</small></article>
+              <article class="denim-product"><img src="./laydowns/095%20%E2%80%94%2016_9.png" alt="Soft leather handbag"><b>PRADA</b><span>Symbol embroidered fabric mini bag</span><strong>$3400</strong><small>Mytheresa ↗</small></article>
+            </div>
+            <button class="load-more-guide" type="button" data-load-more-guide>LOAD MORE</button>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="pdp-overlay" id="product-detail" role="dialog" aria-modal="true" aria-label="Gucci Jackie 1961 shoulder bag" hidden>
+      <header class="pdp-header">
+        <button class="pdp-back" type="button" aria-label="Back to Shopping">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" /></svg>
+        </button>
+        <div class="pdp-tools" aria-hidden="true">
+          <span class="pdp-search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7"></circle><path d="m16 16 5 5"></path></svg><small>14</small></span>
+          <svg class="pdp-share" viewBox="0 0 24 24"><path d="M12 15V3m0 0L7 8m5-5 5 5M5 13v7h14v-7"></path></svg>
+        </div>
+      </header>
+      <div class="pdp-scroll">
+        <div class="pdp-content">
+          <div class="pdp-image">
+            <img src="./laydowns/183%20%E2%80%94%20Gucci%20Jackie%201961/183%20%E2%80%94%20Gucci%20Jackie%201961/black%20leather%20product%20laydown.png" alt="Black Gucci Jackie 1961 shoulder bag">
+            <span class="save-count"><img src="./public/shopping/bookmark.svg" alt="">18</span>
+          </div>
+          <p class="brand-name">GUCCI</p>
+          <div class="product-title-row">
+            <p>Jackie 1961 shoulder bag</p>
+            <img src="./public/shopping/product-bell.png" alt="Notify me about this item">
+          </div>
+          <div class="pdp-rule"></div>
+          <p class="vogue-knows">VOGUE KNOWS</p>
+          <p class="pdp-description">This shoulder bag earned its name after Jackie Kennedy was photographed carrying it so often that the fashion house renamed the bag in her honour.</p>
+          <div class="pdp-actions">
+            <button class="black-button shop-piece" type="button">SHOP THIS PIECE</button>
+            <button class="save-button" type="button" aria-pressed="false">
+              <span class="save-label">SAVE</span><img src="./public/shopping/bookmark.svg" alt="">
+            </button>
+          </div>
+          <button class="retailer-link" type="button">View retailer price and availability</button>
+
+          <section class="pdp-featured-in" aria-label="Featured in">
+            <div class="pdp-rule section-rule"></div>
+            <div class="split-title pdp-subtitle">
+              <span class="initial">F</span><span class="line-one">EATURED</span><span class="line-two">IN</span>
+            </div>
+            <p class="pdp-caption">Stories and edits where this item appears.</p>
+            <div class="pdp-related">
+              <article><img src="./laydowns/261%20%E2%80%94%20image.png" alt="Knitwear and outerwear edit"><b>IN THIS EDIT</b><span>Outfit ideas for the upcoming transitional season</span></article>
+              <article><img src="./landscape%20images/130%20%E2%80%94%20PARIS-STREETSTYLE-PHILOH-DAY8-%252017%203.png" alt="Street-style look featuring a shoulder bag"><b>IN THIS STORY</b><span>The pieces worth keeping</span></article>
+            </div>
+          </section>
+          <div class="pdp-rule section-rule"></div>
+          <div class="split-title pdp-subtitle related-title" aria-label="Related reading">
+            <span class="initial">R</span><span class="line-one">ELATED</span><span class="line-two">READING</span>
+          </div>
+          <p class="pdp-caption">More on shape, materials and ways to wear.</p>
+          <div class="pdp-related">
+            <article><img src="./landscape%20images/044%20%E2%80%94%203_4.png" alt="Portrait from a Vogue feature"><b>CELEB OF THE WEEK</b><span>“If There Were a Bag Called Joan...”</span></article>
+            <article><img src="./landscape%20images/040%20%E2%80%94%202_3.png" alt="Fashion and travel editorial"><b>TRAVEL STYLE EDIT</b><span>The balance of travel and style in a capsule wardrobe</span></article>
+          </div>
+          <div class="pdp-rule section-rule"></div>
+          <section class="wardrobe-recommendation" aria-label="Build your wardrobe">
+            <img src="./laydowns/183%20%E2%80%94%20Gucci%20Jackie%201961/183%20%E2%80%94%20Gucci%20Jackie%201961/black%20leather%20product%20laydown.png" alt="Gucci Jackie 1961 shoulder bag">
+            <p>Build Your Wardrobe</p>
+            <div class="wardrobe-actions">
+              <button class="black-button" type="button" data-style-preference="more">SEE MORE LIKE THIS</button>
+              <button type="button" data-style-preference="less">SEE LESS LIKE THIS</button>
+            </div>
+            <div class="preference-feedback" data-preference-feedback hidden aria-live="polite">
+              <p>GOT IT. MORE STYLES LIKE THIS WILL NOW BE SHOWN TO YOU.</p>
+              <button type="button" data-undo-preference>UNDO</button>
+            </div>
+          </section>
+          <div class="pdp-rule section-rule"></div>
+          <p class="items-heading">Items That Go With It</p>
+          <div class="pdp-product-grid">
+            <img src="./laydowns/068%20%E2%80%94%2016_9.png" alt="Tan belted dress">
+            <img src="./laydowns/190%20%E2%80%94%20Runway/190%20%E2%80%94%20Runway/source%20photo.png" alt="Cream coat">
+            <img src="./laydowns/242%20%E2%80%94%20Image.png" alt="Black dress">
+            <img src="./laydowns/069%20%E2%80%94%2016_9.png" alt="Wide-leg jeans">
+            <img src="./laydowns/191%20%E2%80%94%20Spotlight/191%20%E2%80%94%20Spotlight/source%20photo.png" alt="Blue jacket">
+            <img src="./laydowns/188%20%E2%80%94%20Quizzes/188%20%E2%80%94%20Quizzes/source%20photo.png" alt="Pendant necklace">
+            <img src="./laydowns/192%20%E2%80%94%20Quizzes/192%20%E2%80%94%20Quizzes/source%20photo.png" alt="Ivory cardigan">
+            <img src="./laydowns/224%20%E2%80%94%20Image.png" alt="Ivory blouse">
+            <img src="./laydowns/239%20%E2%80%94%20Image.png" alt="Leopard print coat">
+            <img src="./laydowns/345%20%E2%80%94%20Product%20Image.png" alt="Grey trousers">
+            <img src="./laydowns/268%20%E2%80%94%20Product%20Image.png" alt="Argyle sweater">
+            <img src="./laydowns/233%20%E2%80%94%20Image.png" alt="Burgundy flat shoes">
+          </div>
+          <button class="pdp-load-more" type="button" data-load-more-pdp>LOAD MORE · 12 / 32</button>
+        </div>
+      </div>
+    </section>
+    <script src="./public/shopping.js"></script>
+  </body>
+</html>
