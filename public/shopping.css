@@ -47,9 +47,25 @@ main {
 }
 
 .app-header {
+  position: relative;
   height: calc(100px + env(safe-area-inset-top));
   padding-top: env(safe-area-inset-top);
   background: #fff;
+}
+
+.masthead-home {
+  position: absolute;
+  top: calc(38px + env(safe-area-inset-top));
+  left: 30%;
+  width: 40%;
+  height: 62px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.masthead-home:focus-visible,
+.today-header-home:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: -2px;
 }
 
 .status-row {

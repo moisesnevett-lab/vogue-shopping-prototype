@@ -12,7 +12,13 @@
     <link rel="stylesheet" href="https://use.typekit.net/rdb2otl.css">
     <link rel="stylesheet" href="./public/typography.css">
     <link rel="stylesheet" href="./public/shopping.css">
-    <title>Vogue Shopping</title>
+    <link rel="stylesheet" href="./public/today.css">
+    <title>Vogue</title>
+    <script>
+      if (!window.location.search) {
+        window.location.replace("./today-image-preview.html");
+      }
+    </script>
   </head>
   <body>
     <div class="app-shell" id="shopping-app">
@@ -28,6 +34,7 @@
               </span>
             </div>
             <img class="masthead" src="./ui%20elements/IMG_9636%201.png" alt="Vogue Shopping">
+            <a class="masthead-home" href="./today-image-preview.html" aria-label="Return to Links Menu"></a>
           </header>
 
           <section class="arrival" aria-label="Shopping arrival">
@@ -466,10 +473,196 @@
 
       <nav class="bottom-dock" aria-label="Main navigation">
         <img src="./ui%20elements/BottomNavShopping.png" alt="">
-        <button type="button" aria-label="Home" data-jump="arrival"></button>
+        <button type="button" aria-label="Today" data-app-view="today"></button>
         <button type="button" aria-label="Collection" data-jump="ideas"></button>
         <button type="button" aria-label="Shopping" data-jump="arrival"></button>
         <button type="button" aria-label="Discover" data-jump="stories"></button>
+      </nav>
+    </div>
+
+    <div class="today-view" id="today-view" aria-label="Vogue Today" hidden>
+      <header class="today-header">
+        <img src="./ui%20elements/Group%209378.png" alt="Vogue">
+        <a class="today-header-home" href="./today-image-preview.html" aria-label="Return to Links Menu"></a>
+      </header>
+      <main class="today-content">
+        <section class="priority-story" aria-labelledby="priority-title">
+          <div class="priority-progress" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+          <p class="priority-reading"><i></i> READ <span>1 / 5</span></p>
+          <div class="priority-cover">
+            <img src="./Editor's%20thumbnails/216%20%E2%80%94%201673883160872%201.png" alt="Model in a vivid pink look">
+            <span class="cover-wordmark">VOGUE</span>
+            <div class="cover-caption">
+              <p>NEW · THE COVER STORY</p>
+              <h1 id="priority-title">Beyond the cover</h1>
+              <p>The interview, the making of the shoot and the conversation around it.</p>
+            </div>
+          </div>
+          <button class="cover-cta" type="button">
+            <span>EXPLORE THE COVER</span><span class="cover-cta-icon" aria-hidden="true">↗<small>(6)</small></span>
+          </button>
+        </section>
+
+        <section class="today-section know-section" aria-labelledby="know-heading">
+          <div class="today-section-heading">
+            <h2 id="know-heading">In The Know</h2>
+            <button type="button">EDIT</button>
+          </div>
+          <div class="know-rail">
+            <article class="know-card">
+              <img src="./landscape%20images/041%20%E2%80%94%202_3.png" alt="Models walking together at a runway show">
+              <p class="card-topic">RUNWAY</p>
+              <h3>The shows everyone is watching</h3>
+              <p class="card-time">4 MIN AGO</p>
+            </article>
+            <article class="know-card">
+              <img src="./landscape%20images/042%20%E2%80%94%202_3.png" alt="Models sitting together at a runway show">
+              <p class="card-topic">VOGUE BUSINESS</p>
+              <h3>Fashion’s size-inclusivity report</h3>
+              <p class="card-time">15 MIN AGO</p>
+            </article>
+            <article class="know-card">
+              <img src="./landscape%20images/073%20%E2%80%94%2016_9.png" alt="Fashion editors and guests on a city street">
+              <p class="card-topic">STREET STYLE</p>
+              <h3>A lesson in ease</h3>
+              <p class="card-time">3 HOURS AGO</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="today-section week-section" aria-labelledby="week-heading">
+          <div class="week-topline">
+            <h2 id="week-heading">THIS WEEK<br>AT VOGUE</h2>
+            <div class="week-topics" aria-label="This Week at Vogue topics">
+              <button type="button">Breaking News</button>
+              <button type="button">Trend Reports</button>
+              <button type="button">Best Dressed</button>
+              <button type="button">Culture</button>
+            </div>
+          </div>
+          <article class="week-feature">
+            <img class="week-feature-image" src="./landscape%20images/574%20%E2%80%94%20image%20109.png" alt="Fashion editorial scene with two people in a blue bedroom">
+            <div class="week-feature-copy">
+              <div class="week-category"><span>IN FASHION</span><button type="button">EDIT</button></div>
+              <h3>The Saint Laurent chapter</h3>
+              <p>The news, the silhouettes and the cultural reach of Anthony Vaccarello’s Saint Laurent.</p>
+            </div>
+          </article>
+          <div class="week-collapsed" data-collapsed-stories>
+            <div class="talking-points">
+              <h3>This Week’s Talking Points</h3>
+              <article class="talking-card">
+                <img src="./Editor's%20thumbnails/135%20%E2%80%94%20Avatar.png" alt="">
+                <div>
+                  <p class="talking-byline">LAIRD BORRELLI-PERSSON <span>◉</span></p>
+                  <p class="talking-time">CONTRIBUTOR · 2H AGO</p>
+                  <p class="talking-copy">Though revealing, Vaccarello’s version of naked dressing was tantalizingly suggestive rather than explicitly bare…</p>
+                </div>
+                <img class="talking-thumb" src="./portrait%20images/120%20%E2%80%94%20Image.png" alt="Model in a black evening dress">
+              </article>
+              <div class="talking-pagination" aria-label="Talking points, item 1 of 5"><i class="active"></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="week-expanded" data-expanded-stories hidden>
+            <article class="expanded-story saint-laurent-story">
+              <img src="./portrait%20images/603%20%E2%80%94%20image%20138.png" alt="Saint Laurent Spring 2027 runway">
+              <div class="week-category"><span>IN FASHION</span><button type="button">EDIT</button></div>
+              <h3>Saint Laurent, Spring 2027</h3>
+              <p>The news, the silhouettes and the cultural reach of Anthony Vaccarello’s Saint Laurent.</p>
+            </article>
+            <article class="expanded-story">
+              <img src="./landscape%20images/483%20%E2%80%94%20image%209.png" alt="Fashion house collection and accessories">
+              <div class="week-category"><span>IN FASHION</span><button type="button">EDIT</button></div>
+              <h3>Best Dressed</h3>
+              <p>Amid the arduous process of compiling Vogue’s 2025 Best Dressed list, a veritable emerald.</p>
+            </article>
+            <article class="expanded-story">
+              <img src="./landscape%20images/539%20%E2%80%94%20image%2074.png" alt="Designers gathered backstage at a fashion event">
+              <div class="week-category"><span>IN BUSINESS</span><button type="button">EDIT</button></div>
+              <h3>Chinese Design Is Becoming What Does That Mean for Western Luxury?</h3>
+              <p>Until recently, China’s importance to the global fashion industry has been largely measured by consumption.</p>
+            </article>
+            <div class="week-explore">
+              <h3>Explore This Week’s At Vogue</h3>
+              <div class="week-explore-rail">
+                <article><img src="./portrait%20images/604%20%E2%80%94%20image%20139.png" alt=""><span>NEWS</span></article>
+                <article><img src="./landscape%20images/212%20%E2%80%94%20Home%20carosel.png" alt=""><span>TRENDS</span></article>
+                <article><img src="./portrait%20images/586%20%E2%80%94%20image%20121.png" alt=""><span>STYLE</span></article>
+                <article><img src="./portrait%20images/605%20%E2%80%94%20image%20140.png" alt=""><span>RUNWAY</span></article>
+              </div>
+            </div>
+          </div>
+          <button class="story-expander" type="button" data-today-toggle aria-expanded="false">
+            <img src="./ui%20elements/EXPAND%20TOP%20STORIES.png" alt="Expand top stories">
+          </button>
+        </section>
+
+        <section class="today-section diversions-section" aria-labelledby="diversions-heading">
+          <h2 id="diversions-heading">Daily Diversions</h2>
+          <article class="diversion-item">
+            <img src="./Editor's%20thumbnails/216%20%E2%80%94%201673883160872%201.png" alt="">
+            <div><span class="red-tag">PLAY</span><h3>How well do you know Saint Laurent?</h3><p>THE DAILY QUIZ · 2 MIN</p></div>
+          </article>
+          <article class="diversion-item">
+            <img src="./Editor's%20thumbnails/161%20%E2%80%94%20image.png" alt="">
+            <div><span class="red-tag">CHAT</span><h3>What makes a look unforgettable?</h3><p>THE VOGUE CONVERSATION</p></div>
+          </article>
+        </section>
+
+        <section class="today-section unseen-section" aria-labelledby="unseen-heading">
+          <p class="section-overline" id="unseen-heading">VOGUE UNSEEN</p>
+          <p class="unseen-intro">Street style, through your eyes.</p>
+          <div class="unseen-collage">
+            <img class="unseen-main" src="./public/shopping/street-style-vote.png" alt="Street-style look in a dark coat">
+            <img src="./landscape%20images/212%20%E2%80%94%20Home%20carosel.png" alt="Street-style look against a brick wall">
+            <img src="./landscape%20images/130%20%E2%80%94%20PARIS-STREETSTYLE-PHILOH-DAY8-%252017%203.png" alt="Street-style look in a blue jacket">
+            <span class="wear-tag">WEAR</span>
+          </div>
+          <div class="styling-buttons">
+            <button type="button">MORE TAILORED</button>
+            <button type="button">MORE RELAXED</button>
+            <button type="button">MORE EXPRESSIVE</button>
+          </div>
+          <div class="unseen-footer">
+            <p>Discover the pieces<br>behind the looks.</p>
+            <button type="button">SEE, SAVE &amp; SHOP</button>
+          </div>
+        </section>
+
+        <section class="today-section on-the-go-section" aria-labelledby="on-the-go-heading">
+          <h2 class="section-overline" id="on-the-go-heading">VOGUE, ON THE GO</h2>
+          <span class="red-tag hear-tag">HEAR</span>
+          <div class="audio-rail">
+            <article class="audio-story">
+              <img src="./portrait%20images/482%20%E2%80%94%20image%208.png" alt="Vogue cover story">
+              <div><p class="audio-kicker">◖◗ &nbsp; THE RUN-THROUGH</p><h3>Doisy Edgar-Jones Talks Sense and Sensibility, Hair, Discourse, and Sisterhood</h3></div>
+            </article>
+            <article class="audio-story">
+              <img src="./portrait%20images/601%20%E2%80%94%20image%20136.png" alt="Saint Laurent runway">
+              <div><p class="audio-kicker">◖◗ &nbsp; VOGUE PODCAST</p><h3>The stories shaping fashion now</h3></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="today-section explore-vogue-section" aria-labelledby="explore-vogue-heading">
+          <div class="today-section-heading">
+            <h2 id="explore-vogue-heading">Explore Vogue</h2>
+            <button type="button">EDIT</button>
+          </div>
+          <div class="explore-vogue-rail">
+            <article><img src="./portrait%20images/147%20%E2%80%94%20image.png" alt=""><span>FASHION</span></article>
+            <article><img src="./landscape%20images/539%20%E2%80%94%20image%2074.png" alt=""><span>BUSINESS</span></article>
+            <article><img src="./landscape%20images/212%20%E2%80%94%20Home%20carosel.png" alt=""><span>CULTURE</span></article>
+            <article><img src="./portrait%20images/601%20%E2%80%94%20image%20136.png" alt=""><span>RUNWAY</span></article>
+          </div>
+        </section>
+      </main>
+      <nav class="today-dock" aria-label="Today navigation">
+        <img src="./ui%20elements/BottomNavToday.png" alt="">
+        <button type="button" aria-label="Today, selected" aria-current="page"></button>
+        <button type="button" aria-label="Collection"></button>
+        <button type="button" aria-label="Shopping" data-app-view="shopping"></button>
+        <button type="button" aria-label="Discover"></button>
       </nav>
     </div>
 
@@ -626,5 +819,6 @@
       </div>
     </section>
     <script src="./public/shopping.js"></script>
+    <script src="./public/today.js"></script>
   </body>
 </html>

@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#fff">
+    <title>Today Image Preview</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #fff;
+      }
+
+      .preview {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        transition: height 540ms cubic-bezier(0.2, 0.72, 0.25, 1);
+      }
+
+      .links-menu {
+        aspect-ratio: 1875 / 4060;
+      }
+
+      .links-menu img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+      }
+
+      .preview-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: auto;
+        pointer-events: none;
+      }
+
+      #transition-image {
+        opacity: 0;
+        transition: opacity 300ms ease;
+      }
+
+      #reference-image {
+        transition: opacity 300ms ease;
+      }
+
+      .menu-link,
+      .today-topic-target,
+      .today-nav-target,
+      .breaking-article-target {
+        position: absolute;
+        display: block;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .menu-link:focus-visible,
+      .today-topic-target:focus-visible,
+      .today-nav-target:focus-visible,
+      .breaking-article-target:focus-visible {
+        outline: 2px solid #111;
+        outline-offset: 2px;
+      }
+
+      .menu-link {
+        left: 7.3%;
+        width: 85%;
+        height: 3.4%;
+      }
+
+      #menu-collapsed { top: 19.8%; }
+      #menu-coming-soon { top: 24.1%; }
+      #menu-editor-explains { top: 28.5%; }
+      #menu-shopping { top: 54%; }
+
+      .today-chrome {
+        position: fixed;
+        z-index: 6;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .today-header-chrome {
+        position: fixed;
+        z-index: 6;
+        top: 0;
+        right: 0;
+        left: 0;
+        background: #fff;
+      }
+
+      .today-header-chrome img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .today-chrome img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .today-nav-target {
+        z-index: 1;
+        bottom: 0;
+        width: 25%;
+        height: 100%;
+      }
+
+      #today-nav-today { left: 0; }
+      #today-nav-collection { left: 25%; }
+      #today-nav-shopping { left: 50%; }
+      #today-nav-discover { left: 75%; }
+
+      .today-topic-target {
+        z-index: 3;
+        top: 27%;
+        left: 0;
+        width: 100%;
+        height: 2.5%;
+      }
+
+      .toggle-target {
+        position: absolute;
+        z-index: 2;
+        left: 4.2667%;
+        width: 91.4667%;
+        aspect-ratio: 1715 / 220;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .toggle-mask {
+        position: absolute;
+        z-index: 1;
+        left: 4%;
+        width: 92%;
+        aspect-ratio: 1715 / 220;
+        background: #fff;
+        pointer-events: none;
+      }
+
+      .toggle-target img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .toggle-target:focus-visible {
+        outline: 2px solid #111;
+        outline-offset: 2px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .preview,
+        #reference-image,
+        #transition-image {
+          transition-duration: 0ms;
+        }
+      }
+
+      .article-target {
+        position: absolute;
+        z-index: 1;
+        left: 4%;
+        width: 92%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .article-target:focus-visible,
+      .article-back:focus-visible,
+      .video-minimize:focus-visible {
+        outline: 2px solid #111;
+        outline-offset: 2px;
+      }
+
+      .article-overlay {
+        position: fixed;
+        z-index: 12;
+        inset: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        background: transparent;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .article-dismiss-backdrop {
+        position: fixed;
+        z-index: 11;
+        inset: 0;
+        background: #000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 90ms linear;
+      }
+
+      .breaking-overlay {
+        position: fixed;
+        z-index: 10;
+        inset: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        background: transparent;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .breaking-dismiss-backdrop {
+        position: fixed;
+        z-index: 9;
+        inset: 0;
+        background: #000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 90ms linear;
+      }
+
+      .breaking-sheet {
+        position: relative;
+        width: 100%;
+        background: #fff;
+      }
+
+      .breaking-chrome {
+        position: sticky;
+        z-index: 2;
+        top: 0;
+        background: #fff;
+      }
+
+      .breaking-header {
+        display: grid;
+        grid-template-columns: 44px 1fr 44px;
+        align-items: center;
+        height: calc(46px + env(safe-area-inset-top));
+        padding: env(safe-area-inset-top) 8px 0;
+        border-bottom: 1px solid #e9e9e9;
+        background: #fff;
+      }
+
+      .breaking-header .article-masthead,
+      .article-header .article-masthead {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .breaking-header .article-masthead {
+        font-size: 19px;
+      }
+
+      .breaking-subnav {
+        height: 49px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        background: #fff;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .breaking-subnav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .breaking-subnav-content {
+        position: relative;
+        width: 803px;
+        height: 49px;
+      }
+
+      .breaking-subnav-content img {
+        display: block;
+        width: 803px;
+        height: 49px;
+      }
+
+      .breaking-subnav-content button {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .breaking-subnav-content button:focus-visible,
+      .today-header-return:focus-visible {
+        outline: 2px solid #111;
+        outline-offset: 1px;
+      }
+
+      .today-header-return {
+        position: absolute;
+        top: 0;
+        left: 30%;
+        width: 40%;
+        height: 100%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .breaking-image-wrap {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .breaking-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        /* Replace the screenshot's 245px category row with the sticky asset. */
+        margin-top: -13.066667%;
+      }
+
+      .breaking-article-target {
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .breaking-runway {
+        height: 100dvh;
+        pointer-events: none;
+      }
+
+      .menu-return {
+        position: fixed;
+        z-index: 6;
+        top: calc(8px + env(safe-area-inset-top));
+        left: 8px;
+        width: 36px;
+        height: 36px;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .article-sheet {
+        position: relative;
+        width: 100%;
+        background: #fff;
+      }
+
+      .article-header {
+        position: sticky;
+        z-index: 2;
+        top: 0;
+        display: grid;
+        grid-template-columns: 44px 1fr 44px;
+        align-items: center;
+        height: calc(46px + env(safe-area-inset-top));
+        padding: env(safe-area-inset-top) 8px 0;
+        border-bottom: 1px solid #e9e9e9;
+        background: #fff;
+      }
+
+      .article-masthead-button {
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 19px;
+        text-align: center;
+      }
+
+      .article-back,
+      .video-minimize {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #111;
+        cursor: pointer;
+      }
+
+      .article-back svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .article-masthead {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 19px;
+        text-align: center;
+      }
+
+      .article-image-wrap {
+        position: relative;
+        width: 100%;
+      }
+
+      .article-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: -12.8vw;
+        clip-path: inset(12.8vw 0 0);
+        transform: translateY(-12.8vw);
+      }
+
+      .video-hotspot {
+        position: absolute;
+        top: 3.85%;
+        left: 25%;
+        width: 50%;
+        height: 4%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .video-hotspot:focus-visible,
+      .in-situ-control:focus-visible {
+        outline: 2px solid #111;
+      }
+
+      .breaking-subnav-content button:focus-visible {
+        outline-offset: -2px;
+      }
+
+      .in-situ-player {
+        position: absolute;
+        top: 3.85%;
+        left: 25%;
+        width: 50%;
+        aspect-ratio: 250 / 428;
+        overflow: hidden;
+        background: #000;
+      }
+
+      .in-situ-video img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .in-situ-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .in-situ-control {
+        position: absolute;
+        z-index: 1;
+        bottom: 2%;
+        display: grid;
+        place-items: center;
+        width: 18%;
+        aspect-ratio: 1;
+        padding: 0;
+        border: 0;
+        background: #000;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .in-situ-pause {
+        left: 2%;
+      }
+
+      .in-situ-expand {
+        right: 2%;
+      }
+
+      .in-situ-control svg {
+        width: 54%;
+        height: 54%;
+      }
+
+      .in-situ-pause .play-icon {
+        display: none;
+      }
+
+      .in-situ-player[data-playing="false"] .pause-icon {
+        display: none;
+      }
+
+      .in-situ-player[data-playing="false"] .play-icon {
+        display: block;
+      }
+
+      .dismiss-runway {
+        height: calc(100dvh + 12.8vw);
+        pointer-events: none;
+      }
+
+      .floating-video {
+        position: fixed;
+        z-index: 12;
+        right: 12px;
+        bottom: calc(14px + env(safe-area-inset-bottom));
+        width: min(30vw, 128px);
+        max-height: 34dvh;
+        aspect-ratio: 250 / 428;
+        overflow: hidden;
+        border: 1px solid #fff;
+        background: #000;
+        box-shadow: 0 2px 12px #0004;
+        cursor: pointer;
+        opacity: 1;
+        transition: opacity 130ms linear;
+      }
+
+      .floating-video img,
+      .fullscreen-video img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .fullscreen-video {
+        position: fixed;
+        z-index: 20;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: #000;
+      }
+
+      .fullscreen-video > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .video-minimize {
+        position: absolute;
+        z-index: 1;
+        top: calc(8px + env(safe-area-inset-top));
+        left: 8px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #0008;
+        color: #fff;
+      }
+
+      .video-minimize svg,
+      .video-share svg {
+        width: 23px;
+        height: 23px;
+      }
+
+      .video-share {
+        position: absolute;
+        top: calc(8px + env(safe-area-inset-top));
+        right: 12px;
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        color: #fff;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      body.overlay-open {
+        overflow: hidden;
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .fullscreen-video {
+          animation: video-appear 160ms ease-out;
+        }
+
+        @keyframes video-appear {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="preview links-menu" id="links-menu">
+      <img src="./links%20menu.png" alt="Inform Me and Style Me links menu">
+      <a class="menu-link" id="menu-collapsed" data-view="collapsed" href="?view=collapsed" aria-label="Today Collapsed"></a>
+      <a class="menu-link" id="menu-coming-soon" data-view="coming-soon" href="?view=coming-soon" aria-label="Today Coming Soon"></a>
+      <a class="menu-link" id="menu-editor-explains" data-view="editor-explains" href="?view=editor-explains" aria-label="Today Editor Explains"></a>
+      <a class="menu-link" id="menu-shopping" href="./index.html?tab=shopping" aria-label="Shopping / Style Me"></a>
+    </main>
+    <main class="preview" id="preview" hidden>
+      <img
+        class="preview-image"
+        id="reference-image"
+        alt="Today page — collapsed reference"
+      >
+      <img class="preview-image" id="transition-image" alt="" aria-hidden="true" hidden>
+      <button
+        class="toggle-target"
+        id="expand-target"
+        type="button"
+        aria-label="Expand top stories"
+        style="top: 51.4%"
+      >
+        <img src="./ui%20elements/EXPAND%20TOP%20STORIES.png" alt="">
+      </button>
+      <button
+        class="toggle-target"
+        id="collapse-target"
+        type="button"
+        aria-label="Show less"
+        style="top: 65.7%"
+        hidden
+      >
+        <img src="./ui%20elements/show%20less.png" alt="">
+      </button>
+      <div class="toggle-mask" id="toggle-mask" aria-hidden="true" hidden></div>
+      <button class="today-topic-target" id="today-topic-target" type="button" aria-label="Open Breaking News"></button>
+      <div id="collapsed-article-targets">
+        <button class="article-target" type="button" aria-label="Open article" style="top: 4%; height: 10%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 17%; height: 5%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 30%; height: 7%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 57%; height: 4%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 66%; height: 8%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 91%; height: 5%"></button>
+      </div>
+      <div id="expanded-article-targets" hidden>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 4%; height: 9%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 17%; height: 5%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 29%; height: 8%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 40%; height: 7%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 51%; height: 8%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 62%; height: 7%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 76%; height: 8%"></button>
+        <button class="article-target" type="button" aria-label="Open article" style="top: 95%; height: 4%"></button>
+      </div>
+    </main>
+    <header class="today-header-chrome" id="today-header-chrome" hidden>
+      <img src="./ui%20elements/Group%209378.png" alt="Vogue Today">
+      <button class="today-header-return" id="today-header-return" type="button" aria-label="Return to Links Menu"></button>
+    </header>
+    <nav class="today-chrome" id="today-chrome" aria-label="Today navigation" hidden>
+      <img src="./ui%20elements/BottomNavToday.png" alt="">
+      <a class="today-nav-target" id="today-nav-today" href="?view=collapsed" aria-label="Today"></a>
+      <a class="today-nav-target" id="today-nav-collection" href="?view=collapsed" aria-label="Collection"></a>
+      <a class="today-nav-target" id="today-nav-shopping" href="./index.html?tab=shopping" aria-label="Shopping"></a>
+      <a class="today-nav-target" id="today-nav-discover" href="?view=collapsed" aria-label="Discover"></a>
+    </nav>
+    <div class="breaking-dismiss-backdrop" id="breaking-dismiss-backdrop" aria-hidden="true" hidden></div>
+    <section class="breaking-overlay" id="breaking-overlay" role="dialog" aria-modal="true" aria-label="Today Breaking News" tabindex="-1" hidden>
+      <div class="breaking-sheet" id="breaking-sheet">
+        <div class="breaking-chrome">
+        <header class="breaking-header">
+          <button class="article-back" id="breaking-back" type="button" aria-label="Back to Today">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="m15 4-8 8 8 8"></path>
+            </svg>
+          </button>
+          <button class="article-masthead article-masthead-button" id="breaking-logo" type="button" aria-label="Return to Links Menu">VOGUE</button>
+          <span aria-hidden="true"></span>
+        </header>
+        <nav class="breaking-subnav" aria-label="Breaking News categories">
+          <div class="breaking-subnav-content">
+            <img src="./ui%20elements/sticky-sub-nav.png" alt="">
+            <button type="button" aria-label="Breaking News" style="left:13.7%;width:14%" data-breaking-progress="0"></button>
+            <!-- The supplied reference contains only the Breaking News feed. -->
+            <button type="button" aria-label="Trend Reports" style="left:28%;width:14%" aria-disabled="true"></button>
+            <button type="button" aria-label="Best Dressed" style="left:42.2%;width:12.5%" aria-disabled="true"></button>
+            <button type="button" aria-label="Street Style" style="left:55.4%;width:12.5%" aria-disabled="true"></button>
+            <button type="button" aria-label="People Are Talking About" style="left:68.5%;width:21.3%" aria-disabled="true"></button>
+            <button type="button" aria-label="Quizzes" style="left:90.3%;width:9.7%" aria-disabled="true"></button>
+          </div>
+        </nav>
+        </div>
+        <div class="breaking-image-wrap">
+          <img
+            class="breaking-image"
+            src="./Inform%20Me%20Reference%20Images/Today%20-%20Breaking%20news%20overlay.png"
+            alt="This Week at Vogue — Breaking News stories"
+          >
+          <button class="breaking-article-target" id="breaking-article-target" type="button" aria-label="Open Breaking News article"></button>
+        </div>
+      </div>
+      <div class="breaking-runway" aria-hidden="true"></div>
+    </section>
+    <div class="article-dismiss-backdrop" id="article-dismiss-backdrop" aria-hidden="true" hidden></div>
+    <section class="article-overlay" id="article-overlay" role="dialog" aria-modal="true" aria-label="Article detail" tabindex="-1" hidden>
+      <article class="article-sheet" id="article-sheet">
+        <header class="article-header" id="article-header">
+          <button class="article-back" id="article-back" type="button" aria-label="Back to Today">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="m15 4-8 8 8 8"></path>
+            </svg>
+          </button>
+          <button class="article-masthead article-masthead-button" id="article-logo" type="button" aria-label="Return to Links Menu">VOGUE</button>
+          <span aria-hidden="true"></span>
+        </header>
+        <div class="article-image-wrap" id="article-image-wrap">
+          <img
+            class="article-image"
+            src="./Inform%20Me%20Reference%20Images/Article%20detail%20page.png"
+            alt="Vogue article about Nicolas Ghesquière"
+          >
+          <button class="video-hotspot" id="video-hotspot" type="button" aria-label="Play article video"></button>
+          <div class="in-situ-player" id="in-situ-player" data-playing="false" hidden>
+            <button class="in-situ-video" id="in-situ-video" type="button" aria-label="Pause video">
+              <img id="in-situ-image" src="./ui%20elements/Oct-22-2026%2014-33-46.gif" alt="Article video">
+            </button>
+            <button class="in-situ-control in-situ-pause" id="in-situ-pause" type="button" aria-label="Pause video">
+              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M6 4h4v16H6zM14 4h4v16h-4z"></path>
+              </svg>
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M7 4v16l13-8z"></path>
+              </svg>
+            </button>
+            <button class="in-situ-control in-situ-expand" id="in-situ-expand" type="button" aria-label="Expand video">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true">
+                <path d="M14 3h7v7M21 3l-8 8M10 21H3v-7M3 21l8-8"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+      <div class="dismiss-runway" aria-hidden="true"></div>
+    </section>
+    <button class="floating-video" id="floating-video" type="button" aria-label="Open video player" hidden>
+      <img src="./ui%20elements/Oct-22-2026%2014-33-46.gif" alt="">
+    </button>
+    <section class="fullscreen-video" id="fullscreen-video" role="dialog" aria-modal="true" aria-label="Article video" hidden>
+      <button class="video-minimize" id="video-minimize" type="button" aria-label="Minimise video">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="m15 4-8 8 8 8"></path>
+        </svg>
+      </button>
+      <span class="video-share" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 15V3m0 0L7 8m5-5 5 5M5 13v7h14v-7"></path>
+        </svg>
+      </span>
+      <img src="./ui%20elements/Oct-22-2026%2014-33-46.gif" alt="Video of a fashion editor speaking">
+    </section>
+    <script>
+      (() => {
+        const preview = document.querySelector("#preview");
+        const linksMenu = document.querySelector("#links-menu");
+        const todayChrome = document.querySelector("#today-chrome");
+        const todayHeaderChrome = document.querySelector("#today-header-chrome");
+        let image = document.querySelector("#reference-image");
+        let transitionImage = document.querySelector("#transition-image");
+        const expandTarget = document.querySelector("#expand-target");
+        const collapseTarget = document.querySelector("#collapse-target");
+        const toggleMask = document.querySelector("#toggle-mask");
+        const expandAsset = expandTarget.querySelector("img");
+        const collapseAsset = collapseTarget.querySelector("img");
+        const collapsedArticleTargets = document.querySelector("#collapsed-article-targets");
+        const expandedArticleTargets = document.querySelector("#expanded-article-targets");
+        const articleOverlay = document.querySelector("#article-overlay");
+        const articleSheet = document.querySelector("#article-sheet");
+        const articleHeader = document.querySelector("#article-header");
+        const videoHotspot = document.querySelector("#video-hotspot");
+        const inSituPlayer = document.querySelector("#in-situ-player");
+        const inSituImage = document.querySelector("#in-situ-image");
+        const floatingVideo = document.querySelector("#floating-video");
+        const fullscreenVideo = document.querySelector("#fullscreen-video");
+        const videoImage = fullscreenVideo.querySelector("img");
+        const dismissBackdrop = document.querySelector("#article-dismiss-backdrop");
+        const breakingOverlay = document.querySelector("#breaking-overlay");
+        const breakingSheet = document.querySelector("#breaking-sheet");
+        const breakingBackdrop = document.querySelector("#breaking-dismiss-backdrop");
+        const videoGifPath = "./ui%20elements/Oct-22-2026%2014-33-46.gif";
+        const todayViews = {
+          collapsed: {
+            path: "./Inform%20Me%20Reference%20Images/Today%20-%20Collapsed.png",
+            height: 15370,
+            toggle: "expand"
+          },
+          expanded: {
+            path: "./Inform%20Me%20Reference%20Images/Today%20-%20Expanded.png",
+            height: 21625,
+            toggle: "collapse"
+          },
+          "coming-soon": {
+            path: "./Inform%20Me%20Reference%20Images/Today%20-%20Coming%20soon.png",
+            height: 21625,
+            toggle: "collapse"
+          },
+          "editor-explains": {
+            path: "./Inform%20Me%20Reference%20Images/Today%20-%20editor%20explains.png",
+            height: 21625,
+            toggle: "collapse"
+          }
+        };
+        let todayScrollTop = 0;
+        let previousBodyOverflow = "";
+        let videoPlaying = false;
+        let inSituPlaying = false;
+        let articleOpener;
+        let todayView = "collapsed";
+        let articleParent = "today";
+        let stateTransitioning = false;
+        let stateTransitionToken = 0;
+
+        function setTodayView(view, push = true, resetScroll = false, keepCurrentImage = false) {
+          const config = todayViews[view];
+          if (!config) return;
+          if (!keepCurrentImage) {
+            stateTransitionToken += 1;
+            stateTransitioning = false;
+            image.style.opacity = "1";
+            transitionImage.style.opacity = "0";
+            transitionImage.hidden = true;
+            image.src = config.path;
+          }
+          todayView = view;
+          preview.hidden = false;
+          preview.style.height = `${preview.clientWidth * config.height / 1875}px`;
+          if (!keepCurrentImage) {
+            image.alt = `Vogue Today — ${view.replaceAll("-", " ")}`;
+          }
+          const hasExpand = view === "collapsed";
+          expandTarget.hidden = !hasExpand;
+          collapseTarget.hidden = hasExpand;
+          expandAsset.hidden = view !== "collapsed";
+          collapseAsset.hidden = view !== "expanded";
+          toggleMask.hidden = view !== "collapsed" && view !== "expanded";
+          toggleMask.style.top = view === "collapsed" ? "51.4%" : "65.7%";
+          expandTarget.style.top = "51.4%";
+          collapseTarget.style.top = view === "expanded" ? "65.7%" : "94.5%";
+          collapsedArticleTargets.hidden = view !== "collapsed";
+          expandedArticleTargets.hidden = view === "collapsed";
+          linksMenu.hidden = true;
+          todayChrome.hidden = false;
+          todayHeaderChrome.hidden = false;
+          document.querySelector("#today-topic-target").style.top =
+            view === "collapsed" ? "27%" : view === "expanded" ? "27%" : "29%";
+          if (resetScroll) window.scrollTo(0, 0);
+          if (push) {
+            const url = new URL(window.location.href);
+            url.search = `?view=${encodeURIComponent(view)}`;
+            window.history.pushState({ screen: "today", view }, "", url);
+          }
+        }
+
+        async function showState(expanded) {
+          if (stateTransitioning) return;
+          const nextView = expanded ? "expanded" : "collapsed";
+          if (todayView === nextView) return;
+          const nextConfig = todayViews[nextView];
+          const trigger = expanded ? expandTarget : collapseTarget;
+          const triggerTop = trigger.getBoundingClientRect().top;
+          const token = ++stateTransitionToken;
+          stateTransitioning = true;
+          transitionImage.src = nextConfig.path;
+          transitionImage.alt = `Vogue Today — ${nextView}`;
+          transitionImage.hidden = false;
+          transitionImage.style.transition = "none";
+          transitionImage.style.opacity = "0";
+          image.style.transition = "none";
+          image.style.opacity = "1";
+          try {
+            await transitionImage.decode();
+          } catch (error) {
+            transitionImage.hidden = true;
+            stateTransitioning = false;
+            console.error(`Unable to load Today reference image: ${nextConfig.path}`, error);
+            return;
+          }
+          if (token !== stateTransitionToken) return;
+          transitionImage.style.transition = "";
+          image.style.transition = "";
+          setTodayView(nextView, true, false, true);
+          const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 560;
+          if (!expanded) {
+            const previewTop = preview.getBoundingClientRect().top + window.scrollY;
+            const nextTriggerTop = Number.parseFloat(expandTarget.style.top) / 100;
+            const nextTriggerDocumentTop =
+              previewTop + preview.clientWidth * nextConfig.height / 1875 * nextTriggerTop;
+            const startScrollTop = window.scrollY;
+            const endScrollTop = Math.max(0, nextTriggerDocumentTop - triggerTop);
+            if (duration === 0) {
+              window.scrollTo(0, endScrollTop);
+            } else {
+              const scrollStart = performance.now();
+              const adjustScroll = (time) => {
+                if (token !== stateTransitionToken) return;
+                const progress = Math.min(1, (time - scrollStart) / 540);
+                const eased = progress < 0.5
+                  ? 4 * progress ** 3
+                  : 1 - ((-2 * progress + 2) ** 3) / 2;
+                window.scrollTo(0, startScrollTop + (endScrollTop - startScrollTop) * eased);
+                if (progress < 1) window.requestAnimationFrame(adjustScroll);
+              };
+              window.requestAnimationFrame(adjustScroll);
+            }
+          }
+          window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+              if (token !== stateTransitionToken) return;
+              image.style.opacity = "0";
+              transitionImage.style.opacity = "1";
+            });
+          });
+          await new Promise((resolve) => window.setTimeout(resolve, duration));
+          if (token !== stateTransitionToken) return;
+          [image, transitionImage] = [transitionImage, image];
+          image.id = "reference-image";
+          transitionImage.id = "transition-image";
+          image.style.transition = "none";
+          image.style.opacity = "1";
+          transitionImage.style.transition = "none";
+          transitionImage.style.opacity = "0";
+          transitionImage.hidden = true;
+          stateTransitioning = false;
+          window.requestAnimationFrame(() => {
+            image.style.transition = "";
+            transitionImage.style.transition = "";
+          });
+        }
+
+        function updateFloatingVideo() {
+          if (!videoPlaying || articleOverlay.hidden) {
+            floatingVideo.hidden = true;
+            return;
+          }
+          const isInline = inSituPlayer.getBoundingClientRect().bottom > articleHeader.getBoundingClientRect().bottom;
+          const remainingArticle = articleSheet.offsetHeight -
+            (articleOverlay.scrollTop + articleOverlay.clientHeight);
+          const fadeDistance = articleOverlay.clientHeight * 0.75;
+          const endOpacity = Math.max(0, Math.min(1, remainingArticle / fadeDistance));
+          floatingVideo.hidden = isInline;
+          floatingVideo.style.opacity = String(endOpacity);
+          floatingVideo.style.pointerEvents = endOpacity > 0 ? "auto" : "none";
+          floatingVideo.setAttribute("aria-hidden", String(endOpacity === 0));
+        }
+
+        function updateBackdrop(overlay, sheet, backdrop) {
+          if (overlay.hidden || sheet.offsetHeight === 0) {
+            backdrop.hidden = true;
+            return;
+          }
+          const dismissStart = sheet.offsetHeight - overlay.clientHeight;
+          const progress = Math.max(0, Math.min(1,
+            (overlay.scrollTop - dismissStart) / Math.max(1, overlay.clientHeight)));
+          backdrop.hidden = false;
+          backdrop.style.opacity = String(0.38 * (1 - progress));
+        }
+
+        function updateDismissBackdrop() {
+          updateBackdrop(articleOverlay, articleSheet, dismissBackdrop);
+        }
+
+        function closeBreaking() {
+          breakingOverlay.hidden = true;
+          breakingBackdrop.hidden = true;
+          document.body.classList.remove("overlay-open");
+          document.body.style.overflow = previousBodyOverflow;
+          window.requestAnimationFrame(() => window.scrollTo(0, todayScrollTop));
+        }
+
+        function openBreaking() {
+          todayScrollTop = window.scrollY;
+          previousBodyOverflow = document.body.style.overflow;
+          document.body.classList.add("overlay-open");
+          breakingOverlay.hidden = false;
+          breakingOverlay.scrollTop = 0;
+          breakingOverlay.focus({ preventScroll: true });
+          updateBackdrop(breakingOverlay, breakingSheet, breakingBackdrop);
+        }
+
+        function closeArticle() {
+          articleOverlay.hidden = true;
+          dismissBackdrop.hidden = true;
+          fullscreenVideo.hidden = true;
+          floatingVideo.hidden = true;
+          videoPlaying = false;
+          inSituPlaying = false;
+          inSituPlayer.hidden = true;
+          videoHotspot.hidden = false;
+          inSituPlayer.dataset.playing = "false";
+          inSituImage.src = videoGifPath;
+          document.querySelector("#in-situ-video").setAttribute("aria-label", "Pause video");
+          window.requestAnimationFrame(() => {
+            if (articleParent === "today") {
+              document.body.classList.remove("overlay-open");
+              document.body.style.overflow = previousBodyOverflow;
+              window.scrollTo(0, todayScrollTop);
+            }
+            articleOpener?.focus({ preventScroll: true });
+          });
+        }
+
+        function openArticle(event) {
+          articleOpener = event.currentTarget;
+          articleParent = breakingOverlay.hidden ? "today" : "breaking";
+          if (articleParent === "today") {
+            todayScrollTop = window.scrollY;
+            previousBodyOverflow = document.body.style.overflow;
+            document.body.classList.add("overlay-open");
+          }
+          articleOverlay.hidden = false;
+          articleOverlay.scrollTop = 0;
+          articleOverlay.focus({ preventScroll: true });
+          updateFloatingVideo();
+          updateDismissBackdrop();
+        }
+
+        function showMenu(push = true) {
+          stateTransitionToken += 1;
+          stateTransitioning = false;
+          articleOverlay.hidden = true;
+          breakingOverlay.hidden = true;
+          dismissBackdrop.hidden = true;
+          breakingBackdrop.hidden = true;
+          fullscreenVideo.hidden = true;
+          floatingVideo.hidden = true;
+          videoPlaying = false;
+          inSituPlaying = false;
+          inSituPlayer.hidden = true;
+          videoHotspot.hidden = false;
+          inSituPlayer.dataset.playing = "false";
+          inSituImage.src = videoGifPath;
+          document.body.classList.remove("overlay-open");
+          document.body.style.overflow = previousBodyOverflow;
+          linksMenu.hidden = false;
+          preview.hidden = true;
+          todayChrome.hidden = true;
+          todayHeaderChrome.hidden = true;
+          if (push) {
+            const url = new URL(window.location.href);
+            url.search = "";
+            window.history.pushState({ screen: "menu" }, "", url);
+          }
+          window.scrollTo(0, 0);
+        }
+
+        function scrollBreakingToProgress(progress) {
+          const image = breakingOverlay.querySelector(".breaking-image-wrap");
+          const stickyHeight = breakingOverlay.querySelector(".breaking-chrome").offsetHeight;
+          const imageTop = image.getBoundingClientRect().top -
+            breakingOverlay.getBoundingClientRect().top + breakingOverlay.scrollTop;
+          const targetTop = imageTop + image.offsetHeight * progress - stickyHeight;
+          breakingOverlay.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
+        }
+
+        function openFullscreenVideo() {
+          videoPlaying = true;
+          inSituPlaying = true;
+          inSituPlayer.dataset.playing = "true";
+          inSituImage.src = videoGifPath;
+          document.querySelector("#in-situ-pause").setAttribute("aria-label", "Pause video");
+          document.querySelector("#in-situ-video").setAttribute("aria-label", "Pause video");
+          fullscreenVideo.hidden = false;
+          videoImage.src = videoGifPath;
+          updateFloatingVideo();
+        }
+
+        function playInSitu() {
+          videoHotspot.hidden = true;
+          inSituPlayer.hidden = false;
+          inSituPlayer.dataset.playing = "true";
+          inSituPlaying = true;
+          videoPlaying = true;
+          inSituImage.src = videoGifPath;
+          updateFloatingVideo();
+        }
+
+        function toggleInSituPlayback() {
+          if (inSituPlaying) {
+            const canvas = document.createElement("canvas");
+            canvas.width = inSituImage.naturalWidth;
+            canvas.height = inSituImage.naturalHeight;
+            canvas.getContext("2d").drawImage(inSituImage, 0, 0);
+            inSituImage.src = canvas.toDataURL("image/png");
+            inSituPlaying = false;
+            inSituPlayer.dataset.playing = "false";
+            document.querySelector("#in-situ-pause").setAttribute("aria-label", "Resume video");
+            document.querySelector("#in-situ-video").setAttribute("aria-label", "Resume video");
+          } else {
+            inSituPlaying = true;
+            inSituPlayer.dataset.playing = "true";
+            inSituImage.src = videoGifPath;
+            document.querySelector("#in-situ-pause").setAttribute("aria-label", "Pause video");
+            document.querySelector("#in-situ-video").setAttribute("aria-label", "Pause video");
+          }
+          videoPlaying = inSituPlaying;
+          updateFloatingVideo();
+        }
+
+        [...collapsedArticleTargets.querySelectorAll(".article-target"),
+          ...expandedArticleTargets.querySelectorAll(".article-target")].forEach((target) => {
+          target.addEventListener("click", openArticle);
+        });
+
+        expandTarget.addEventListener("click", () => showState(true));
+        collapseTarget.addEventListener("click", () => showState(false));
+        document.querySelector("#today-topic-target").addEventListener("click", openBreaking);
+        document.querySelector("#breaking-back").addEventListener("click", closeBreaking);
+        document.querySelector("#breaking-article-target").addEventListener("click", openArticle);
+        document.querySelector("#article-back").addEventListener("click", closeArticle);
+        document.querySelector("#today-header-return").addEventListener("click", () => showMenu());
+        document.querySelector("#breaking-logo").addEventListener("click", () => showMenu());
+        document.querySelector("#article-logo").addEventListener("click", () => showMenu());
+        breakingOverlay.querySelectorAll("[data-breaking-progress]").forEach((button) => {
+          button.addEventListener("click", () => {
+            scrollBreakingToProgress(Number(button.dataset.breakingProgress));
+          });
+        });
+        videoHotspot.addEventListener("click", playInSitu);
+        document.querySelector("#in-situ-video").addEventListener("click", toggleInSituPlayback);
+        document.querySelector("#in-situ-pause").addEventListener("click", toggleInSituPlayback);
+        document.querySelector("#in-situ-expand").addEventListener("click", openFullscreenVideo);
+        floatingVideo.addEventListener("click", openFullscreenVideo);
+        document.querySelector("#video-minimize").addEventListener("click", () => {
+          fullscreenVideo.hidden = true;
+          updateFloatingVideo();
+        });
+        articleOverlay.addEventListener("scroll", () => {
+          updateFloatingVideo();
+          updateDismissBackdrop();
+          if (articleSheet.offsetHeight > 0 &&
+              articleOverlay.scrollTop >= articleSheet.offsetHeight - 1) {
+            closeArticle();
+          }
+        }, { passive: true });
+        breakingOverlay.addEventListener("scroll", () => {
+          updateBackdrop(breakingOverlay, breakingSheet, breakingBackdrop);
+          if (breakingSheet.offsetHeight > 0 &&
+              breakingOverlay.scrollTop >= breakingSheet.offsetHeight - 1) {
+            closeBreaking();
+          }
+        }, { passive: true });
+        fullscreenVideo.addEventListener("click", (event) => {
+          if (event.target === fullscreenVideo) {
+            fullscreenVideo.hidden = true;
+            updateFloatingVideo();
+          }
+        });
+
+        linksMenu.querySelectorAll("[data-view]").forEach((link) => {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            setTodayView(link.dataset.view, true, true);
+          });
+        });
+        document.querySelectorAll(".today-nav-target").forEach((link) => {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            if (link.id === "today-nav-shopping") {
+              window.location.href = link.href;
+            }
+          });
+        });
+        window.addEventListener("popstate", (event) => {
+          const view = new URLSearchParams(window.location.search).get("view");
+          if (view && todayViews[view]) setTodayView(view, false, true);
+          else showMenu(false);
+        });
+        window.addEventListener("resize", () => {
+          if (!preview.hidden) {
+            preview.style.height = `${preview.clientWidth * todayViews[todayView].height / 1875}px`;
+          }
+        });
+
+        const initialView = new URLSearchParams(window.location.search).get("view");
+        if (initialView && todayViews[initialView]) {
+          setTodayView(initialView, false, true);
+        } else {
+          showMenu(false);
+        }
+        articleOverlay.querySelector("#article-image-wrap").addEventListener("scroll", updateFloatingVideo);
+      })();
+    </script>
+  </body>
+</html>
