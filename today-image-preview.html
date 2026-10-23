@@ -6,6 +6,11 @@
     <meta name="theme-color" content="#fff">
     <title>Today Image Preview</title>
     <style>
+      :root {
+        /* The 1875px-wide artwork includes 170px of bottom safe-area space. */
+        --dock-bottom-extension: max(0px, calc(env(safe-area-inset-bottom, 0px) - 100vw * 170 / 1875));
+      }
+
       * {
         box-sizing: border-box;
       }
@@ -26,6 +31,11 @@
 
       .links-menu {
         aspect-ratio: 1875 / 4060;
+      }
+
+      #preview {
+        /* Keep the screenshot's built-in footer clearance plus any extra inset. */
+        margin-bottom: var(--dock-bottom-extension);
       }
 
       .links-menu img {
@@ -93,7 +103,8 @@
         right: 0;
         bottom: 0;
         left: 0;
-        padding-bottom: env(safe-area-inset-bottom);
+        padding-bottom: var(--dock-bottom-extension);
+        background: #fff;
       }
 
       .today-header-chrome {
