@@ -95,7 +95,27 @@
       #menu-collapsed { top: 19.8%; }
       #menu-coming-soon { top: 24.1%; }
       #menu-editor-explains { top: 28.5%; }
-      #menu-shopping { top: 54%; }
+      .style-menu-links {
+        position: absolute;
+        top: 54%;
+        left: 7.3%;
+        width: 85%;
+        padding: 1.6vw 0 3vw;
+        background: #fff;
+        font: 3.4667vw / 1.5 "Vogue Menu", Arial, sans-serif;
+      }
+
+      @font-face {
+        font-family: "Vogue Menu";
+        src: url("./public/fonts/Vogue%20Avant%20Garde%20generazione-2026-06-11/otf/VogueAvantGarde-Book.otf") format("opentype");
+      }
+
+      .style-menu-links a {
+        display: block;
+        width: fit-content;
+        margin-bottom: 4.6vw;
+        color: #3678ff;
+      }
 
       .today-chrome {
         position: fixed;
@@ -635,7 +655,11 @@
       <a class="menu-link" id="menu-collapsed" data-view="collapsed" href="?view=collapsed" aria-label="Today Collapsed"></a>
       <a class="menu-link" id="menu-coming-soon" data-view="coming-soon" href="?view=coming-soon" aria-label="Today Coming Soon"></a>
       <a class="menu-link" id="menu-editor-explains" data-view="editor-explains" href="?view=editor-explains" aria-label="Today Editor Explains"></a>
-      <a class="menu-link" id="menu-shopping" href="./index.html?tab=shopping" aria-label="Shopping / Style Me"></a>
+      <nav class="style-menu-links" aria-label="Style Me">
+        <a id="menu-style-1" href="./style-me-preview.html?version=1">Style Me 1.0</a>
+        <a id="menu-style-2" href="./style-me-preview.html?version=2">Style Me 2.0</a>
+        <a id="menu-style-3" href="./style-me-v3.html">Style Me 3.0</a>
+      </nav>
     </main>
     <main class="preview" id="preview" hidden>
       <img

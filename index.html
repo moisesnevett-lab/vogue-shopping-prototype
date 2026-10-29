@@ -17,6 +17,8 @@
     <script>
       if (!window.location.search) {
         window.location.replace("./today-image-preview.html");
+      } else if (new URLSearchParams(window.location.search).get("tab") === "shopping") {
+        window.location.replace("./style-me-preview.html?version=1");
       }
     </script>
   </head>
